@@ -33,8 +33,8 @@ async def send_reminder_30_min(message, n, t):
     elif t == 's':
         await message.answer(q_t.text_30min_send)
     else:
-        await message.answer(
-            f'С момента последней вашей активности прошло более 30 минут. Вам осталось ответить всего лишь на {n} вопрос{a}')
+        await message.answer('Добрый день! Наш менеджер ждет завершения анкеты для того, чтобы с вами связаться. Ждем вас!')
+        #await message.answer(f'С момента последней вашей активности прошло более 30 минут. Вам осталось ответить всего лишь на {n} вопрос{a}')
 
 
 async def send_reminder_5_hours(message, n, t):
@@ -55,8 +55,8 @@ async def send_reminder_5_hours(message, n, t):
     elif t == 's':
         await message.answer(q_t.text_5hours_send)
     else:
-        await message.answer(
-            f'С момента вашей последней активности прошло более 5 часов. Вам осталось ответить всего лишь на {n} вопрос{a}')
+        await message.answer('У нас открылось еще одно срочное место на вакансию охранника! Пройдите опрос и мы сразу с вами свяжемся!')
+        #await message.answer(f'С момента вашей последней активности прошло более 5 часов. Вам осталось ответить всего лишь на {n} вопрос{a}')
 
 
 async def send_reminder_19_hours(message, n, t):
@@ -77,8 +77,8 @@ async def send_reminder_19_hours(message, n, t):
     elif t == 's':
         await message.answer(q_t.text_19hours_send)
     else:
-        await message.answer(
-            f'С момента вашей последней активности прошли сутки. Вам осталось ответить всего лишь на {n} вопрос{a}')
+        await message.answer('Поздравляем! Вы прошли собеседование и приняты на работу!\n\n\nПочти...\nЗавершите анкету, чтобы мы могли с вами связаться и завершить заполнение трудового договора.')
+        #await message.answer(f'С момента вашей последней активности прошли сутки. Вам осталось ответить всего лишь на {n} вопрос{a}')
 
 
 def schedule_reminders(message, user_id, n, t):
@@ -113,11 +113,11 @@ def alf_check(n):
 
 def age_check(n):
     if alf_check(n):
-       return 'Введен некорректный ответ'
+       return 'Вы написали некорректный возраст'
     else:
         n = int(n)
         if not(n >= 18 and n < 100):
-            return 'Введеный возраст не удовлетворяет нашим требованиям'
+            return 'Ваш возраст не удовлетворяет нашим требованиям'
         else:
             return False
 
@@ -166,7 +166,7 @@ async def reg_two(message: Message, state: FSMContext):
             await state.set_state(Reg.check)
             schedule_reminders(message=message, user_id=message.from_user.id, n=999, t='e')
     else:
-        await message.answer('Вы ввели некорректное имя')
+        await message.answer('Вы написали некорректное имя')
         await state.set_state(Reg.name)
         await message.answer(q_t.name)
         schedule_reminders(message=message, user_id=message.from_user.id, n=1, t='')
@@ -187,7 +187,7 @@ async def two(message: Message, state: FSMContext):
             await state.set_state(Reg.check)
             schedule_reminders(message=message, user_id=message.from_user.id, n=999, t='e')
     else:
-        await message.answer('Вы ввели некорректную фамилию')
+        await message.answer('Вы написали некорректную фамилию')
         await state.set_state(Reg.surname)
         await message.answer(q_t.surname)
         schedule_reminders(message=message, user_id=message.from_user.id, n=2, t='')
@@ -209,7 +209,7 @@ async def two_three(message: Message, state: FSMContext):
             await state.set_state(Reg.check)
             schedule_reminders(message=message, user_id=message.from_user.id, n=999, t='e')
     else:
-        await message.answer('Вы ввели некорректный город')
+        await message.answer('Вы написали некорректный город')
         await state.set_state(Reg.city)
         await message.answer(q_t.city)
         schedule_reminders(message=message, user_id=message.from_user.id, n=3, t='')

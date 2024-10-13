@@ -35,3 +35,5 @@ tzlocal==5.2
 urllib3==2.2.3
 yarl==1.12.1
 zope.interface==7.0.3
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.26.0
