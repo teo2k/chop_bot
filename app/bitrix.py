@@ -90,20 +90,21 @@ def check_city(user_city):
 
 
 def check_test_city(user_city):
-    vahta_id = '71'
+    vahta_id = '999'
     cities = {
     "Москва": "53",
     "МСК": "53",
     "СПБ": "55",
     "Питер": "55",
     "Санкт-Петербург": "55",
-    "Уфа": "57",
+    "Сызрань": "57",
     "Вологда": "59",
-    "Рязань": "61",
-    "Смоленск": "63",
-    "Керчь": "65",
-    "Киров": "67",
-    "Казань": "69"
+    "Воронеж": "61",
+    "Уфа": "63",
+    "Красноярск": "65",
+    "Краснодар": "67",
+    "Курск": "69",
+    "Новосибирск": "71",
     }
     if len(user_city) < 3:
         return [vahta_id, f'Город указанный пользователем:{user_city}']
@@ -124,10 +125,10 @@ def create_test_lead(name, surname, phone, city, age):
             'LAST_NAME': surname,
             'PHONE': [{'VALUE': phone, 'VALUE_TYPE': 'WORK'}],
             'SOURCE_ID': '1',
-            'UF_CRM_1728746721': '45',
+            'UF_CRM_1729025812': '77',
             'UF_CRM_1727993574610': age,
-            'UF_CRM_1728746806': '49',
-            'UF_CRM_1728746826': city_com[0],
+            'UF_CRM_1729025891': '73',
+            'UF_CRM_1729025908': city_com[0],
             'COMMENTS': city_com[1]
         }
     }
@@ -178,6 +179,8 @@ def get_lead_fields():
     else:
         print("Ошибка при получении полей лида", response.status_code, response.text)
 
+#get_lead_fields()
+
 def get_new_lead_fields():
     response = requests.get(config.bitrix_fields_url)
 
@@ -193,7 +196,7 @@ def get_new_lead_fields():
 def get_lead_fields2(state):
 
     real_lead_custom_fields = ['UF_CRM_1646838611', 'UF_CRM_1696427710938', 'UF_CRM_1708614342018']
-    test_lead_custom_fields = ['UF_CRM_1728746721', 'UF_CRM_1728746806', 'UF_CRM_1728746826']
+    test_lead_custom_fields = ['UF_CRM_1729025812', 'UF_CRM_1729025891', 'UF_CRM_1729025908']
     if state == 'real':
         temp = real_lead_custom_fields
         req = config.bitrix_fields_url
@@ -230,6 +233,6 @@ def get_sources():
         print("Ошибка при получении списка источников", response.status_code, response.text)
 
 #get_sources()
-#create_test_lead('Илья', 'Волков', '+9999999', 'мсква', '40')
+#create_test_lead('Илья', 'Волков', '+79155367642', 'мсква', '40')
 #get_lead_fields()
 #create_lead('Александр', 'Степанов', '+79564323453', 'Москва', '40')
